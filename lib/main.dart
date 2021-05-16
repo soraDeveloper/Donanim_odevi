@@ -30,7 +30,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(questionNumber),
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25.0, color: Colors.white),
               ),
@@ -59,7 +58,7 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.green,
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
+                bool correctAnswer = quizBrain.getCorrectAnswer();
                 if (correctAnswer == true) {
                 } else {}
                 setState(
@@ -70,7 +69,7 @@ class _QuizPageState extends State<QuizPage> {
                     //     color: Colors.green,
                     //   ),
                     // );
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                   },
                 );
               },
@@ -90,7 +89,7 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.getCorrectAnswer(questionNumber);
+                bool correctAnswer = quizBrain.getCorrectAnswer();
                 if (correctAnswer == false) {
                 } else {}
                 setState(
@@ -101,7 +100,7 @@ class _QuizPageState extends State<QuizPage> {
                     //     color: Colors.red,
                     //   ),
                     // );
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                   },
                 );
               },
